@@ -1,0 +1,4 @@
+<WorldConfiguration>
+<WorldSizeX>100</WorldSizeX>
+<WorldSizeY>100</WorldSizeY>
+<WorldConfiguration>
