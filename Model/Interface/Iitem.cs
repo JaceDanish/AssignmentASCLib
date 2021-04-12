@@ -7,5 +7,6 @@ namespace AssignmentASCLib.Model
     public interface Iitem
     {
         public String Name { get; set; }
+
     }
 }

@@ -26,11 +26,18 @@ namespace AssignmentASCLib.Model
         }
         /// <summary>
         /// Attacks enemy and fights till death. Returns true if attacker won, false if attacker lost.
+        /// Throws null-exception.
         /// </summary>
         /// <param name="enemy"></param>
         /// <returns></returns>
         public bool AttackEnemy(Creature enemy)
         {
+            if (enemy == null)
+            {
+                tracer.TraceInfo(1, $"Argument to {Name}'s AttackEnemy method was null");
+                throw new ArgumentNullException(nameof(Creature));
+            }
+
             while(Alive && enemy.Alive)
             {
                 enemy.TakeDamage(DealDamage());
@@ -39,6 +46,7 @@ namespace AssignmentASCLib.Model
                     TakeDamage(enemy.DealDamage());
                 }
             }
+            tracer.TraceInfo(0, $"{(Alive ? enemy.Name : Name)} was slain by {(Alive ? Name : enemy.Name)}");
             return Alive;
         }
 
@@ -47,7 +55,6 @@ namespace AssignmentASCLib.Model
             if ((HitPoints =- (damage - Armor)) <= 0)
             {
                 Alive = false;
-                tracer.TraceInfo(1, "die");
             }
         }
 
@@ -57,7 +64,25 @@ namespace AssignmentASCLib.Model
             return _hand1.Damage;
         }
 
-        //make set public or make healing-method
+        public String Consume(Consumable potion)
+        {
+            if (potion == null)
+            {
+                tracer.TraceInfo(1, $"Argument to {Name}'s Consume method was null");
+                throw new ArgumentNullException(nameof(Creature));
+            }
+
+            //open for expansion
+            switch (potion.Type)
+            {
+                case Potion.Healing: this.HitPoints += potion.Effectiveness;
+                    break;
+            }
+            String info = $"{Name} consumed {potion.Type.ToString()}";
+            tracer.TraceInfo(0, info);
+            return info;
+        }
+
         public int HitPoints
         {
             get { return _hitPoints; }
@@ -79,5 +104,10 @@ namespace AssignmentASCLib.Model
             get { return _hand2; }
         }
         public String Name { get; protected set; }
+
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
     }
 }

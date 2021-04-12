@@ -19,7 +19,7 @@ namespace AssignmentASCLib.Model
             worldMap = new WorldObjectBase[x, y];
         }
 
-
+        public WorldObjectBase[,] WorldMaps { get { return worldMap; } set { worldMap = value; } }
 
         
 

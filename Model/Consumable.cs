@@ -6,6 +6,16 @@ namespace AssignmentASCLib.Model
 {
     public class Consumable : Iitem
     {
-        public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Consumable(Potion type)
+        {
+            Type = type;
+        }
+        public string Name { get; set; }
+        public Potion Type { get; private set; }
+        public int Effectiveness { get; private set; }
+    }
+    public enum Potion
+    {
+        Healing
     }
 }

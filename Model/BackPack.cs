@@ -7,7 +7,7 @@ using System.Text;
 namespace AssignmentASCLib.Model
 {
     //Wrapper/Adapter/Decorator
-    public class BackPack : IEnumerable<Iitem>
+    public class BackPack
     {
         private List<Iitem> _content;
         private int _max;
@@ -70,14 +70,5 @@ namespace AssignmentASCLib.Model
             return _content.Count <= _max;
         }
 
-        public IEnumerator<Iitem> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

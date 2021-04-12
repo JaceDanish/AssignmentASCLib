@@ -14,6 +14,7 @@ namespace AssignmentASCLib.Tools
         private Tracer()
         {
             ts.Switch = new SourceSwitch("Info", "All");
+            TraceInfo(0, DateTime.Now.ToString());
             
         }
 

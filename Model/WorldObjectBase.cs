@@ -7,12 +7,17 @@ namespace AssignmentASCLib.Model
     //Composite pattern
     public abstract class WorldObjectBase
     {
+        public WorldObjectBase()
+        {
+            Position = new Coordinates();
+        }
+
         public Coordinates Position { get; set; }
         
     }
-    public struct Coordinates
+    public class Coordinates
     {
-        int x;
-        int y;
+        public int x;
+        public int y;
     }
 }
