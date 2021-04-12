@@ -52,7 +52,8 @@ namespace AssignmentASCLib.Model
 
         public void TakeDamage(int damage)
         {
-            if ((HitPoints =- (damage - Armor)) <= 0)
+            HitPoints = -damage - Armor;
+            if (HitPoints <= 0)
             {
                 Alive = false;
             }

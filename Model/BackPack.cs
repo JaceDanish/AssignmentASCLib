@@ -15,8 +15,8 @@ namespace AssignmentASCLib.Model
         {
             _content = new List<Iitem>();
             _max = max;
-            for (int i = 0; i < max; i++)
-                _content.Add(content?[i]);
+            for (int i = 0; i < content.Length; i++)
+                _content.Add(content[i]);
         }
         public List<String> ListItems()
         {

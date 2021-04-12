@@ -11,17 +11,51 @@ namespace AssignmentASCLib.Model
         private WorldObjectBase[,] worldMap;
         private int x;
         private int y;
-
+        private String format = "{0:00}";
 
         public World()
         {
             LoadConfig();
             worldMap = new WorldObjectBase[x, y];
+
         }
 
-        public WorldObjectBase[,] WorldMaps { get { return worldMap; } set { worldMap = value; } }
+        public WorldObjectBase[,] WorldMap { get { return worldMap; } set { worldMap = value; } }
 
-        
+        public int X { get { return x; } }
+        public int Y { get { return y; } }
+
+        public void DisplayWorld(Player player)
+        {
+            for (int x = -1; x < X; x++)
+            {
+                Console.Write(String.Format(format, x + 1) + " ");
+                for (int y = 0; y < Y; y++)
+                {
+                    if (x == -1)
+                    {
+                        Console.Write(String.Format(format, y + 1) + " ");
+                    }
+                    else if (player.Position.x == x && player.Position.y == y)
+                    {
+                        Console.Write("<A>");
+                    }
+                    else if (worldMap[x, y] is Creature)
+                    {
+                        Console.Write(" X ");
+                    }
+                    else if (worldMap[x, y] is Terrain)
+                    {
+                        Console.Write(((Terrain)worldMap[x, y]).Traversable ? "   " : " = ");
+                    }
+                    else
+                    {
+                        Console.Write(" _ ");
+                    }
+                }
+                Console.WriteLine();
+            }
+        }
 
         //should have its own class according to single-responsibility.
         #region Config creation/loading
@@ -51,8 +85,8 @@ namespace AssignmentASCLib.Model
             }
             catch
             {
-                x = 100;
-                y = 100;
+                x = 25;
+                y = 25;
             }
         }
         #endregion
