@@ -6,7 +6,6 @@ namespace AssignmentASCLib.Model
 {
     public class Terrain : WorldObjectBase
     {
-        //terrain items not implemented
         public Terrain(String name, bool traversable)
         {
             Name = name;
@@ -14,11 +13,11 @@ namespace AssignmentASCLib.Model
         }
 
         public bool Traversable { get; set; }
-        //public Iitem Treasure { get; set; }
+        public Iitem Treasure { get; set; }
         public String Name { get; set; }
         public override String ToString()
         {
-            return $"Terrain: {Name}, treasure: None, traversable: {(Traversable ? "yes" : "no")}";
+            return $"Terrain: {Name}, treasure: {(Treasure == null ? "none" : Treasure.Name)}, traversable: {(Traversable ? "yes" : "no")}";
         }
     }
 }
