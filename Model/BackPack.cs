@@ -55,7 +55,7 @@ namespace AssignmentASCLib.Model
         public (bool, Iitem) TakeItem(String name)
         {
             try
-            {//Linq
+            {
                 var item = (true, (Iitem)_content.Where(i => i.Name.ToLower().Equals(name.ToLower())));
                 _content.Remove((Iitem)_content.Where(i => i.Name.ToLower().Equals(name.ToLower())));
                 return item;
